@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>sportdb</title>
+    <link rel="icon" type="image/png" href="img/hospt.jpg">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+	 <!-- Librerías de Bootstrap y jQuery -->
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ 
+</head>
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		var idUsuario = getCookie("idUsuario");
+		if (!idUsuario) {
+			window.location.href = 'index.html'; // Redirige a la página de inicio de sesión si no hay cookie
+		}
+	});
+
+	function getCookie(name) {
+		var value = "; " + document.cookie;
+		var parts = value.split("; " + name + "=");
+		if (parts.length == 2) return parts.pop().split(";").shift();
+	}
+</script>
+<body class="cuerpo">
+
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Sistema Deportivo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                    <!-- Cerrar Sesión -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="cerrarSesion();"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Fin de la barra de navegación -->
+
+    <!-- Contenido principal -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h1 class="display-4 text-white mb-4">Bienvenido a nuestro sistema de gestión deportivo</h1>
+            </div>
+        </div>
+        <!-- Fin de la imagen -->
+    </div>
+    <!-- Fin del contenido principal -->
+
+    <!-- Script para cerrar sesión -->
+    <script>
+        function cerrarSesion() {
+            document.cookie = "idUsuario=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location.href = 'index.html';
+        }
+    </script>
+
+</body>
+
+</html>

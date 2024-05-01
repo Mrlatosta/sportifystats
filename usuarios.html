@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="img/hospt.jpg">
+    <title>Inserte Usuario</title>
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="js/handlebars.js"></script>
+    <script type="text/javascript" src="js/master.js"></script>
+    <script type="text/javascript" src="js/funcionesAjax.js"></script>
+    <script type="text/javascript" src="js/validateUsuario.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body class="cuerpo">
+
+    <div class="container-fluid">
+        <br>
+        <div class="row justify-content-md-center">
+            <div class="col col-md-6 fondo-blanco" id="formulario">
+                <br>
+                <h2 class="text-center">Registro de Usuario</h2>
+                <br>
+                <form action="js/validateUsuario.js" method="post">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Usuario:</span>
+                        <input type="text" class="form-control" id="usuario" name="usuario" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Contraseña:</span>
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" required>
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Nivel:</span>
+                        <select class="form-select" id="nivel" name="nivel" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="estado" name="estado" value="1" checked>
+                        <label class="form-check-label" for="estado">Activo</label>
+                    </div>
+                    <div class="input-group mb-3 text-center">
+                        <input type="submit" class="btn btn-success" value="Registrar" onclick="return validateUsuario()">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
