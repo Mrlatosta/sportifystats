@@ -34,7 +34,7 @@ function validateUsuario() {
     // Si los datos son válidos, enviar el formulario vía AJAX
     $.ajax({
         type: "POST",
-        url: "../php/usuario.php",
+        url: "php/usuario.php",
         data: {
             usuario: usuario,
             contrasena: contrasena,
