@@ -15,20 +15,83 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </head>
+
 <script>
+
 	document.addEventListener("DOMContentLoaded", function() {
 		var idUsuario = getCookie("idUsuario");
 		if (!idUsuario) {
 			window.location.href = 'index.html'; // Redirige a la página de inicio de sesión si no hay cookie
-		}
+		}else{
+            mostrarInfoEquipo();
+            obtenerDatosUsuario(idUsuario);
+
+        }
 	});
+
+    function obtenerDatosUsuario(idUsuario) {
+        fetch('php/obtenerDatosUsuario.php?idUsuario=' + idUsuario)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    var usuario = data.usuario;
+                    document.getElementById("userId").textContent = usuario.id_usuario;
+                    document.getElementById("userName").textContent = usuario.usuario;
+                    document.getElementById("userLevel").textContent = usuario.nivel;
+                    document.getElementById("userTeam").textContent = usuario.preferencia_equipo;
+                } else {
+                    console.error(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error al obtener datos de usuario:', error);
+            });
+    }
+
+
 
 	function getCookie(name) {
 		var value = "; " + document.cookie;
 		var parts = value.split("; " + name + "=");
 		if (parts.length == 2) return parts.pop().split(";").shift();
 	}
+
+    function mostrarInfoEquipo() {
+    // Obtener el nombre del equipo desde el span
+    const nombreEquipo = document.getElementById('userTeam').textContent;
+    console.log(document.getElementById('userTeam').textContent);
+    // URL de la API con el nombre del equipo como parámetro
+    const apiUrl = `https://www.thesportsdb.com/api/v1/json/3/searchteams.php?t=${nombreEquipo}`;
+
+    // Realizar la solicitud a la API
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            // Obtener la información del equipo
+            const equipo = data.teams[0];
+
+            // Crear el HTML para mostrar la información del equipo
+            const infoEquipoHTML = `
+                <h2>${equipo.strTeam}</h2>
+                <p>Estadio: ${equipo.strStadium}</p>
+                <p>País: ${equipo.strCountry}</p>
+                <p>Web: <a href="${equipo.strWebsite}" target="_blank">${equipo.strWebsite}</a></p>
+                <p>Descripción: ${equipo.strDescriptionEN}</p>
+                <img src="${equipo.strTeamBadge}" alt="${equipo.strTeam}" width="100">
+            `;
+
+            // Mostrar la información del equipo en el div "info-equipo"
+            document.getElementById('info-equipo').innerHTML = infoEquipoHTML;
+        })
+        .catch(error => {
+            console.error('Error al cargar la información del equipo:', error);
+        });
+}
+
+// Llamar a la función para mostrar la información del equipo cuando la página esté lista
+
 </script>
+
 <body class="cuerpo">
 
     <!-- Barra de navegación -->
@@ -52,10 +115,28 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
-                <h1 class="display-4 text-white mb-4">Bienvenido a nuestro sistema de gestión deportivo</h1>
+                <h1 class="text-white">¡Hola: <span id="userName"></span>! </h1>
+                <h2 class="display-4 text-white mb-4">Bienvenido a nuestro sistema de gestión deportivo</h2>
             </div>
+
+            <div class="col-md-8 text-center" >
+                <div id="userInfo">
+                    <h2>Información del Usuario</h2>
+                    <p>ID de Usuario: <span id="userId"></span></p>
+                    <p>Nombre de Usuario: <span id="userName"></span></p>
+                    <p>Nivel de Usuario: <span id="userLevel"></span></p>
+                    <p>Preferencia de Equipo: <span id="userTeam"></span></p>
+                </div>
+            </div>
+
         </div>
         <!-- Fin de la imagen -->
+    </div>
+
+    <div class="container mt-2">
+        <h2>Informacion Equipo Preferencia</h2>
+        <div id="info-equipo"></div>
+
     </div>
     <!-- Fin del contenido principal -->
 

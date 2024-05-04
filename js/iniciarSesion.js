@@ -28,12 +28,12 @@
                 if (data.txt.includes("Usuario")) {
                     username.classList.add("input-error");
                     // Activar el tooltip
-                    $(username).tooltip('show');
+                    //$(username).tooltip('show');
                 }
                 if (data.txt.includes("Contraseña")) {
                     password.classList.add("input-error");
                     // Activar el tooltip
-                    $(password).tooltip('show');
+                    //$(password).tooltip('show');
                 }
             }
         })
@@ -56,6 +56,7 @@ function togglePasswordVisibility() {
         toggleButton.textContent = "Mostrar";
     }
 }
+
 function cerrarSesion() {
     // Eliminar cookie de sesión
     document.cookie = "idUsuario=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
