@@ -16,8 +16,28 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+     
+        .fondo-blanco {
+            background-color: #ffffff; /* Coincide con el color de fondo del primer documento */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Para agregar una sombra sutil */
+        }
+    </style>
 </head>
 <body class="cuerpo">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Sistema Deportivo</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+                    <!-- Cerrar Sesión -->
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <div class="container-fluid">
         <br>
@@ -26,7 +46,7 @@
                 <br>
                 <h2 class="text-center">Registro de Usuario</h2>
                 <br>
-                <form action="js/validateUsuario.js" method="post">
+                <form action="php/usuario.php" method="post">
                     <div class="input-group mb-3">
                         <span class="input-group-text">Usuario:</span>
                         <input type="text" class="form-control" id="usuario" name="usuario" required>
