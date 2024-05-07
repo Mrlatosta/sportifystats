@@ -10,104 +10,113 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
 </head>
+<style>
+body {
+    background-color: gray;
+}
 
-<body class="cuerpo">
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
 
-    <!-- Barra de navegación -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Sistema Deportivo</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <!-- Cerrar Sesión -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" onclick="cerrarSesion();"><i
-                                class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <!-- Fin de la barra de navegación -->
+.table th,
+.table td {
+    vertical-align: middle;
+}
 
-    <!-- Contenido principal -->
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 text-center">
-                <h1 class="text-white">¡Hola: <span id="userName"></span>! </h1>
-                <h2 class="display-4 text-white mb-4">Bienvenido a nuestro sistema de gestión deportivo</h2>
-            </div>
+.table th {
+    
+    color: black;
+    border-color: #007bff;
+}
 
-            <div class="col-md-8 text-center">
-                <div id="userInfo">
-                    <h2 class="mb-4">Información del Usuario</h2>
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <tbody>
-                                <tr>
-                                    <td>ID de Usuario:</td>
-                                    <td><span id="userId"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Nombre de Usuario:</td>
-                                    <td><span id="userName"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Nivel de Usuario:</td>
-                                    <td><span id="userLevel"></span></td>
-                                </tr>
-                                <tr>
-                                    <td>Preferencia de Equipo:</td>
-                                    <td><span id="userTeam"></span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 123, 255, 0.1);
+}
+</style>
+</head>
+</style>
+<body>
 
-        </div>
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<div class="container-fluid">
+    <a class="navbar-brand" href="#">Sistema Deportivo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <!-- Cerrar Sesión -->
+            <li class="nav-item">
+                <a class="nav-link" href="#" onclick="cerrarSesion();"><i
+                        class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</nav>
+<!-- Fin de la barra de navegación -->
+
+<!-- Contenido principal -->
+<div class="container mt-5">
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <h1 class="text-primary">¡Hola: <span id="userName"></span>!</h1>
+        <h2 class="display-4 mb-4">Bienvenido a nuestro sistema de gestión deportivo</h2>
     </div>
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 text-center">
-                <h2 class="mb-4">Información del Equipo</h2>
-                <div id="info-equipo" class="table-responsive"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 text-center">
-                <h2 class="mb-4">Jugadores del Equipo</h2>
-                <div id="info-jugadores" class="table-responsive"></div> <!-- Aquí se mostrará la lista de jugadores -->
-            </div>
-        </div>
-    </div>
-
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 text-center">
-                <h2 class="mb-4">Próximos Eventos</h2>
-                <div id="info-eventos" class="table-responsive"></div>
+    <div class="col-md-8">
+        <div id="userInfo">
+            <h2 class="mb-4 text-primary">Información del Usuario</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                        <tr>
+                            <th>ID de Usuario:</th>
+                            <td><span id="userId"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Nivel de Usuario:</th>
+                            <td><span id="userLevel"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Preferencia de Equipo:</th>
+                            <td><span id="userTeam"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-md-8 text-center">
-                <h2 class="mb-4">Últimos Partidos Jugados</h2>
-                <div id="info-ultimos-partidos" class="table-responsive"></div>
-            </div>
-        </div>
+    <div class="col-md-8">
+        <h2 class="mb-4 text-primary">Información del Equipo</h2>
+        <div id="info-equipo" class="table-responsive"></div>
     </div>
+
+    <div class="col-md-8">
+        <h2 class="mb-4 text-primary">Jugadores del Equipo</h2>
+        <div id="info-jugadores" class="table-responsive"></div> <!-- Aquí se mostrará la lista de jugadores -->
+    </div>
+
+    <div class="col-md-8">
+        <h2 class="mb-4 text-primary">Próximos Eventos</h2>
+        <div id="info-eventos" class="table-responsive"></div>
+    </div>
+
+    <div class="col-md-8">
+        <h2 class="mb-4 text-primary">Últimos Partidos Jugados</h2>
+        <div id="info-ultimos-partidos" class="table-responsive"></div>
+    </div>
+
+</div>
+</div>
     <!-- Fin del contenido principal -->
 
     <!-- Script para cerrar sesión -->
