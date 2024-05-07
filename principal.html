@@ -5,47 +5,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>sportdb</title>
-    <link rel="icon" type="image/png" href="images/sportify_logo.png">
+    <link rel="icon" type="image/png" href="images/sportify.png">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
+
+        <style>
+
+        body {
+            background-color: gray;
+        }
+
+        #containerPrincipal {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .table th,
+        .table td {
+            vertical-align: middle;
+        }
+
+        .table th {
+            
+            color: black;
+            border-color: #007bff;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+
+        .jugadores-lista {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .jugadores-lista li {
+            display: inline-block;
+            margin-right: 10px; /* Espacio entre cada jugador */
+            color: whitesmoke;
+        }
+
+        .jugadores-lista li img {
+            border-radius: 30px;
+        }
+
+
+
+            </style>
 </head>
-<style>
-body {
-    background-color: gray;
-}
 
-.container {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
 
-.table th,
-.table td {
-    vertical-align: middle;
-}
-
-.table th {
-    
-    color: black;
-    border-color: #007bff;
-}
-
-.table-striped tbody tr:nth-of-type(odd) {
-    background-color: rgba(0, 123, 255, 0.1);
-}
-</style>
-</head>
-</style>
 <body>
 
 <!-- Barra de navegación -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 <div class="container-fluid">
-    <a class="navbar-brand" href="#">Sistema Deportivo</a>
+    <a class="navbar-brand" href="#"><img src="images/sportify.png" alt="logo sportify" style="max-width: 50px;"> Sportify Stats</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -63,15 +84,27 @@ body {
 </nav>
 <!-- Fin de la barra de navegación -->
 
-<!-- Contenido principal -->
-<div class="container mt-5">
-<div class="row justify-content-center">
-    <div class="col-md-8 text-center">
-        <h1 class="text-primary">¡Hola: <span id="userName"></span>!</h1>
-        <h2 class="display-4 mb-4">Bienvenido a nuestro sistema de gestión deportivo</h2>
+<div class="container-fluid p-5 w-100">
+             <div class="col-md-12 text-center p-5" style="background: white;">
+                <h1 class="text-primary">¡Hola: <span id="userName"></span>!</h1>
+                <h2 class="display-md-2 display-lg-4 mb-4">Bienvenido a nuestro sistema de gestión deportiva</h2>
+                </div>
     </div>
 
-    <div class="col-md-8">
+<!-- Contenido principal -->
+<div class="container-fluid mt-5 px-5" >
+
+    
+
+<div class="row" > 
+
+<div class="col-md-8" >
+
+<div class="row justify-content-center">
+
+   
+
+    <div class="col-md-12">
         <div id="userInfo">
             <h2 class="mb-4 text-primary">Información del Usuario</h2>
             <div class="table-responsive">
@@ -95,27 +128,38 @@ body {
         </div>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-12 mt-3" id="userInfo">
         <h2 class="mb-4 text-primary">Información del Equipo</h2>
         <div id="info-equipo" class="table-responsive"></div>
     </div>
 
-    <div class="col-md-8">
-        <h2 class="mb-4 text-primary">Jugadores del Equipo</h2>
-        <div id="info-jugadores" class="table-responsive"></div> <!-- Aquí se mostrará la lista de jugadores -->
-    </div>
 
-    <div class="col-md-8">
-        <h2 class="mb-4 text-primary">Próximos Eventos</h2>
-        <div id="info-eventos" class="table-responsive"></div>
-    </div>
-
-    <div class="col-md-8">
+    <div class="col-md-12 mt-5" id="userInfo">
         <h2 class="mb-4 text-primary">Últimos Partidos Jugados</h2>
         <div id="info-ultimos-partidos" class="table-responsive"></div>
     </div>
 
 </div>
+
+</div>
+
+<div class="col-md-4 mt-5">
+    <div class="container-fluid p-1" style="background: whitesmoke; border-radius: 10px;">
+        <div class="col-md-12">
+        <h2 class="mb-4 text-primary">Próximos Eventos</h2>
+        <div id="info-eventos" class="table-responsive"></div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div class="row mt-5" id="userInfo">
+    <div class="col-md-12">
+        <div id="info-jugadores" class="table-responsive"></div> <!-- Aquí se mostrará la lista de jugadores -->
+    </div>
+</div>
+
 </div>
     <!-- Fin del contenido principal -->
 
@@ -209,30 +253,41 @@ body {
                 });
         }
 
-        function obtenerJugadoresEquipo(nombreEquipo) {
-            // URL de la API con el nombre del equipo como parámetro
-            const apiUrl = `https://www.thesportsdb.com/api/v1/json/60130162/searchplayers.php?t=${nombreEquipo}`;
-            // Realizar la solicitud a la API
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    // Obtener la lista de jugadores
-                    const jugadores = data.player;
+function obtenerJugadoresEquipo(nombreEquipo) {
+    // URL de la API con el nombre del equipo como parámetro
+    const apiUrl = `https://www.thesportsdb.com/api/v1/json/60130162/searchplayers.php?t=${nombreEquipo}`;
+    // Realizar la solicitud a la API
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            // Obtener la lista de jugadores
+            const jugadores = data.player;
 
-                    // Crear el HTML para mostrar la lista de jugadores
-                    let jugadoresHTML = '<h2></h2><ul>';
-                    jugadores.forEach(jugador => {
-                        jugadoresHTML += `<li><a href="#" onclick="obtenerInfoJugador(${jugador.idPlayer})">${jugador.strPlayer}</a></li>`;
-                    });
-                    jugadoresHTML += '</ul>';
+            // Crear el HTML para mostrar la lista de jugadores
+            let jugadoresHTML = '<h2>Jugadores del Equipo</h2><ul class="jugadores-lista">';
+            jugadores.forEach((jugador, index) => {
+                // Obtener la URL de la imagen del jugador
+                const imagenJugador = jugador.strThumb || 'https://via.placeholder.com/150'; // En caso de que no haya imagen, se muestra un placeholder
+                jugadoresHTML += `
+                    <li style="padding:10px;">
+                        <img src="${imagenJugador}" alt="${jugador.strPlayer}" style="width: 100px; height: auto;">
+                        <a style="color:black;" href="#" onclick="obtenerInfoJugador(${jugador.idPlayer})">${jugador.strPlayer}</a>
+                    </li>`;
+                // Agregar un salto de línea cada 5 jugadores
+                if ((index + 1) % 4 === 0) {
+                    jugadoresHTML += '<br>';
+                }
+            });
+            jugadoresHTML += '</ul>';
 
-                    // Mostrar la lista de jugadores en el div "info-jugadores"
-                    document.getElementById('info-jugadores').innerHTML = jugadoresHTML;
-                })
-                .catch(error => {
-                    console.error('Error al cargar la lista de jugadores:', error);
-                });
-        }
+            // Mostrar la lista de jugadores en el div "info-jugadores"
+            document.getElementById('info-jugadores').innerHTML = jugadoresHTML;
+        })
+        .catch(error => {
+            console.error('Error al cargar la lista de jugadores:', error);
+        });
+}
+
 
         function obtenerInfoJugador(idJugador) {
             // URL de la API con el ID del jugador como parámetro
@@ -246,9 +301,15 @@ body {
                         // Obtener la información del jugador
                         const jugador = data.players[0];
 
+                        // Obtener la URL de la imagen del jugador
+                        const imagenJugador = jugador.strThumb || 'https://via.placeholder.com/150'; // En caso de que no haya imagen, se muestra un placeholder
+
                         // Crear el HTML para mostrar la información del jugador
                         const jugadorInfoHTML = `
                             <h2>Información del Jugador</h2>
+                            <div>
+                                <img src="${imagenJugador}" alt="${jugador.strPlayer}" style="width: 200px; height: auto;">
+                            </div>
                             <ul>
                                 <li>Nombre: ${jugador.strPlayer}</li>
                                 <li>Posición: ${jugador.strPosition}</li>
