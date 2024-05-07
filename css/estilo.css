@@ -87,3 +87,53 @@
         margin-top: 20px;
     }
 }
+
+
+
+
+
+body {
+    background-color: gray;
+}
+
+#containerPrincipal {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+.table th {
+    
+    color: black;
+    border-color: #007bff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+.jugadores-lista {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.jugadores-lista li {
+    display: inline-block;
+    margin-right: 10px; /* Espacio entre cada jugador */
+    color: whitesmoke;
+}
+
+.jugadores-lista li img {
+    border-radius: 30px;
+}
+
+
+
