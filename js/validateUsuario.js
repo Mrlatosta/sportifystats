@@ -4,6 +4,9 @@ function validateUsuario() {
     var nivel = $("#nivel").val().trim();
     var activo = $("#activo").prop("checked") ? 1 : 0;
     var isValid = true;
+    var equipo = $("#equipo").val().trim();
+
+    console.log(equipo)
 
     if (usuario === "") {
         $("#usuario").addClass("is-invalid");
@@ -26,6 +29,13 @@ function validateUsuario() {
         $("#nivel").removeClass("is-invalid");
     }
 
+    if (equipo === "") {
+        $("#equipo").addClass("is-invalid");
+        isValid = false;
+    } else {
+        $("#equipo").removeClass("is-invalid");
+    }
+
     if (!isValid) {
         alert("Por favor, complete todos los campos resaltados.");
         return false;
@@ -39,19 +49,23 @@ function validateUsuario() {
             usuario: usuario,
             contrasena: contrasena,
             nivel: nivel,
-            activo: activo
+            activo: activo,
+            equipo: equipo
         },
         dataType: "json",
         success: function(response) {
             if (response.success) {
+                console.log(response)
                 alert("El usuario ha sido insertado correctamente con el ID: " + response.ultimo_id_insertado);
                 // Limpiar el formulario o realizar otras acciones necesarias
                 window.location.replace("principal.html");
             } else {
+                console.log(response)
                 alert("Error: " + response.message);
             }
         },
         error: function(xhr, status, error) {
+            console.log(error)
             alert("Error al enviar los datos del formulario: " + error);
         }
     });
