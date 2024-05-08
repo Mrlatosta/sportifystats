@@ -1,0 +1,13 @@
+{
+    "name": "Marcoperez123/sportifystats",
+    "description": "Aplicacion web de estadisticas e informacion deportiva",
+    "type": "project",
+    "require": {
+        "php": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "": ""
+        }
+    }
+}
