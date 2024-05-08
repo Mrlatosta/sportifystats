@@ -1,36 +1,40 @@
 <?php
-header('Content-Type: application/json; charset=UTF-8');
 include('conexion.php');
 
-try {
-    if (isset($_POST['usuario'], $_POST['contrasena'], $_POST['nivel'], $_POST['equipo'])) {
-        $usuario = $_POST['usuario'];
-        $contrasena = $_POST['contrasena'];
-        $nivel = $_POST['nivel'];
-        $estado = isset($_POST['estado']) ? $_POST['estado'] : 1;
-        $equipo = $_POST['equipo'];
+function registrarUsuario($usuario, $contrasena, $nivel, $equipo) {
+    global $pdo;
 
-        if (!empty($usuario) && !empty($contrasena) && !empty($nivel) && !empty($equipo)) {
-            $hashed_password = password_hash($contrasena, PASSWORD_DEFAULT);
+    try {
+        $estado = 1;
+        $hashed_password = password_hash($contrasena, PASSWORD_DEFAULT);
 
-            $sql = "INSERT INTO usuario (usuario, contrasena, nivel, estado, preferencia_equipo) VALUES (:usuario, :contrasena, :nivel, :estado, :equipo)";
+        $sql = "INSERT INTO usuario (usuario, contrasena, nivel, estado, preferencia_equipo) VALUES (:usuario, :contrasena, :nivel, :estado, :equipo)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':usuario', $usuario, PDO::PARAM_STR);
+        $stmt->bindParam(':contrasena', $hashed_password, PDO::PARAM_STR);
+        $stmt->bindParam(':nivel', $nivel, PDO::PARAM_INT);
+        $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
+        $stmt->bindParam(':equipo', $equipo, PDO::PARAM_STR);
 
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':usuario', $usuario, PDO::PARAM_STR);
-            $stmt->bindParam(':contrasena', $contrasena, PDO::PARAM_STR);
-            $stmt->bindParam(':nivel', $nivel, PDO::PARAM_INT);
-            $stmt->bindParam(':estado', $estado, PDO::PARAM_INT);
-            $stmt->bindParam(':equipo', $equipo, PDO::PARAM_STR);
+        $stmt->execute();
 
-            $stmt->execute();
+        return array('success' => true, 'ultimo_id_insertado' => $pdo->lastInsertId());
+    } catch (PDOException $e) {
+        return array('success' => false, 'message' => 'Error al ejecutar la consulta: ' . $e->getMessage());
+    }
+}
 
-            echo json_encode(array('success' => true, 'ultimo_id_insertado' => $pdo->lastInsertId()));
-        }
+// Lógica de presentación
+header('Content-Type: application/json; charset=UTF-8');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $datos = json_decode(file_get_contents("php://input"), true);
+
+    if (isset($datos['usuario'], $datos['contrasena'], $datos['nivel'], $datos['equipo'])) {
+        $resultado = registrarUsuario($datos['usuario'], $datos['contrasena'], $datos['nivel'], $datos['equipo']);
+        echo json_encode($resultado);
     } else {
         echo json_encode(array('success' => false, 'message' => 'Faltan Campos Obligatorios'));
     }
-} catch (PDOException $e) {
-    echo json_encode(array('success' => false, 'message' => 'Error al ejecutar la consulta: ' . $e->getMessage()));
 }
 ?>
-
