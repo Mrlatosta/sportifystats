@@ -33,7 +33,7 @@ function obtenerDatosUsuario(idUsuario) {
 
 function mostrarInfoEquipo(nombreEquipo) {
     // URL de la API con el nombre del equipo como parámetro
-    const apiUrl = `https://www.thesportsdb.com/api/v1/json/60130162/searchteams.php?t=${nombreEquipo}`;
+    const apiUrl = `https://www.thesportsdb.com/api/v1/json/275841/searchteams.php?t=${nombreEquipo}`;
     // Realizar la solicitud a la API
     fetch(apiUrl)
         .then(response => response.json())
@@ -83,7 +83,7 @@ function mostrarInfoEquipo(nombreEquipo) {
 
 function obtenerJugadoresEquipo(nombreEquipo) {
 // URL de la API con el nombre del equipo como parámetro
-const apiUrl = `https://www.thesportsdb.com/api/v1/json/60130162/searchplayers.php?t=${nombreEquipo}`;
+const apiUrl = `https://www.thesportsdb.com/api/v1/json/275841/searchplayers.php?t=${nombreEquipo}`;
 // Realizar la solicitud a la API
 fetch(apiUrl)
 .then(response => response.json())
@@ -119,7 +119,7 @@ fetch(apiUrl)
 
 function obtenerInfoJugador(idJugador) {
     // URL de la API con el ID del jugador como parámetro
-    const apiUrl = `https://www.thesportsdb.com/api/v1/json/60130162/lookupplayer.php?id=${idJugador}`;
+    const apiUrl = `https://www.thesportsdb.com/api/v1/json/275841/lookupplayer.php?id=${idJugador}`;
     // Realizar la solicitud a la API
     fetch(apiUrl)
         .then(response => response.json())
@@ -161,7 +161,7 @@ function obtenerInfoJugador(idJugador) {
 }
 
 function obtenerIdEquipo(nombreEquipo) {
-    fetch(`https://www.thesportsdb.com/api/v1/json/60130162/searchteams.php?t=${nombreEquipo}`)
+    fetch(`https://www.thesportsdb.com/api/v1/json/275841/searchteams.php?t=${nombreEquipo}`)
         .then(response => response.json())
         .then(data => {
             if (data.teams && data.teams.length > 0) {
@@ -179,7 +179,7 @@ function obtenerIdEquipo(nombreEquipo) {
 
 function obtenerProximosEventos(idEquipo) {
     // URL de la API con el ID del equipo como parámetro
-    const apiUrl = `https://www.thesportsdb.com/api/v1/json/60130162/eventsnext.php?id=${idEquipo}`;
+    const apiUrl = `https://www.thesportsdb.com/api/v1/json/275841/eventsnext.php?id=${idEquipo}`;
     // Realizar la solicitud a la API
     fetch(apiUrl)
         .then(response => response.json())
@@ -224,7 +224,7 @@ function obtenerProximosEventos(idEquipo) {
 
 function obtenerUltimosPartidos(idEquipo) {
     // URL de la API con el ID del equipo como parámetro
-    const apiUrl = `https://www.thesportsdb.com/api/v1/json/60130162/eventslast.php?id=${idEquipo}`;
+    const apiUrl = `https://www.thesportsdb.com/api/v1/json/275841/eventslast.php?id=${idEquipo}`;
     // Realizar la solicitud a la API
     fetch(apiUrl)
         .then(response => response.json())
