@@ -8,13 +8,13 @@ RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 RUN apt-get update && apt-get install -y git
 
 # Clona tu repositorio desde GitHub al contenedor
-RUN git clone https://github.com/Marcoperez123/sportifystats.git /var/www/html/
+RUN git clone https://github.com/Mrlatosta/sportifystats.git /var/www/html/
 
-# Configura tu base de datos MySQL
-ENV MYSQL_HOST=localhost
-ENV MYSQL_USER=root
-ENV MYSQL_PASSWORD=
-ENV MYSQL_DATABASE=sportdb
+# Configura las variables de entorno para la base de datos
+ENV MYSQL_HOST=database-sportify.cjyqay84wvgi.us-east-1.rds.amazonaws.com
+ENV MYSQL_USER=admin
+ENV MYSQL_PASSWORD=sportify123
+ENV MYSQL_DATABASE=sportifydb
 
 # Exponer el puerto 80 para que puedas acceder a tu aplicación web
 EXPOSE 80
