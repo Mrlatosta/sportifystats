@@ -1,8 +1,8 @@
 <?php
-	$servidor = "localhost";
-	$usuario = "root";
-	$contraseña = "";
-	$base_de_datos = "sportdb";
+	$servidor = "database-sportify.cjyqay84wvgi.us-east-1.rds.amazonaws.com";
+	$usuario = "admin";
+	$contraseña = "sportify123";
+	$base_de_datos = "sportifydb";
 
 	// Conexión utilizando PDO
 	try {
